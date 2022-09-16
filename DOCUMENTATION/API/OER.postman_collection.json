@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "54fc1017-e965-4267-a9af-cc2d319e651c",
+		"name": "OER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sc.coloer.net:3000/search?offset=0&limit=100&keyWord=wifi%20hacking%20password&document=Text&language=English",
+					"protocol": "https",
+					"host": [
+						"sc",
+						"coloer",
+						"net"
+					],
+					"port": "3000",
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "100"
+						},
+						{
+							"key": "keyWord",
+							"value": "wifi%20hacking%20password"
+						},
+						{
+							"key": "document",
+							"value": "Text"
+						},
+						{
+							"key": "language",
+							"value": "English"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

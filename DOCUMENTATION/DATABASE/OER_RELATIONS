@@ -1,0 +1,270 @@
+sudo su - postgres 
+[sudo] password for dia: 
+psql
+psql (14.1 (Ubuntu 14.1-1.pgdg18.04+1))
+Type "help" for help.
+
+postgres=# \c postgres
+You are now connected to database "postgres" as user "postgres".
+
+postgres-# \dt
+                   List of relations
+ Schema |           Name            | Type  |  Owner
+--------+---------------------------+-------+----------
+ public | audio_en_db               | table | postgres
+ public | teachers_futures_audio_db | table | postgres
+ public | teachers_futures_db       | table | postgres
+ public | teachers_futures_video_db | table | postgres
+ public | text_en_db                | table | postgres
+ public | videos_en_db              | table | postgres
+ public | x5gon                     | table | postgres
+ public | x5gon_en_db               | table | postgres
+(8 rows)
+
+postgres-# \d x5gon
+                                       Table "public.x5gon"
+       Column       |       Type        | Collation | Nullable |              Default
+--------------------+-------------------+-----------+----------+-----------------------------------
+ id                 | integer           |           | not null | nextval('x5gon_id_seq'::regclass)
+ title              | character varying |           |          |
+ description        | character varying |           |          |
+ data_type          | character varying |           |          |
+ url                | character varying |           |          |
+ website            | character varying |           |          |
+ language           | character varying |           |          |
+ creation_date      | character varying |           |          |
+ retrieved_date     | character varying |           |          |
+ provider_name      | character varying |           |          |
+ provider_id        | character varying |           |          |
+ provider_domain    | character varying |           |          |
+ content_ids        | character varying |           |          |
+ license_name       | character varying |           |          |
+ license_disclaimer | character varying |           |          |
+ license_url        | character varying |           |          |
+Indexes:
+    "x5gon_pkey" PRIMARY KEY, btree (id)
+
+postgres-#
+                                 Table "public.x5gon_en_db"
+       Column       |       Type        | Collation | Nullable |                 Default
+--------------------+-------------------+-----------+----------+-----------------------------------------
+ id                 | integer           |           | not null | nextval('x5gon_en_db_id_seq'::regclass)
+ title              | character varying |           |          |
+ language           | character varying |           |          |
+ description        | character varying |           |          |
+ item               | character varying |           |          |
+ website            | character varying |           |          |
+ authors            | character varying |           |          |
+ creation_date      | date              |           |          |
+ retrieved_date     | date              |           |          |
+ provider_name      | character varying |           |          |
+ provider_id        | character varying |           |          |
+ provider_domain    | character varying |           |          |
+ content_ids        | character varying |           |          |
+ license_name       | character varying |           |          |
+ license_disclaimer | character varying |           |          |
+ license_url        | character varying |           |          |
+ data_type          | character varying |           |          |
+Indexes:
+    "x5gon_en_db_pkey" PRIMARY KEY, btree (id)
+
+postgres-# \d text_en_db
+                                       Table "public.text_en_db"
+       Column       |       Type        | Collation | Nullable |                Default
+--------------------+-------------------+-----------+----------+----------------------------------------
+ id                 | integer           |           | not null | nextval('text_en_db_id_seq'::regclass)
+ title              | character varying |           |          |
+ language           | character varying |           |          |
+ description        | character varying |           |          |
+ item               | character varying |           |          |
+ website            | character varying |           |          |
+ authors            | character varying |           |          |
+ creation_date      | integer           |           |          |
+ retrieved_date     | date              |           |          |
+ provider_name      | character varying |           |          |
+ provider_id        | character varying |           |          |
+ provider_domain    | character varying |           |          |
+ content_ids        | character varying |           |          |
+ license_name       | character varying |           |          |
+ license_disclaimer | character varying |           |          |
+ license_url        | character varying |           |          |
+ data_type          | character varying |           |          |
+Indexes:
+    "text_en_db_pkey" PRIMARY KEY, btree (id)
+Triggers:
+    text_en_db_notify AFTER INSERT OR DELETE OR UPDATE ON text_en_db FOR EACH ROW EXECUTE FUNCTION table_notify()
+    text_en_db_truncate AFTER TRUNCATE ON text_en_db FOR EACH STATEMENT EXECUTE FUNCTION table_notify()
+
+postgres-#\d audio_en_db
+
+                                       Table "public.audio_en_db"
+       Column       |       Type        | Collation | Nullable |                 Default
+--------------------+-------------------+-----------+----------+-----------------------------------------
+ id                 | integer           |           | not null | nextval('audio_en_db_id_seq'::regclass)
+ title              | character varying |           |          |
+ language           | character varying |           |          |
+ description        | character varying |           |          |
+ item               | character varying |           |          |
+ website            | character varying |           |          |
+ authors            | character varying |           |          |
+ creation_date      | integer           |           |          |
+ retrieved_date     | date              |           |          |
+ provider_name      | character varying |           |          |
+ provider_id        | character varying |           |          |
+ provider_domain    | character varying |           |          |
+ content_ids        | character varying |           |          |
+ license_name       | character varying |           |          |
+ license_disclaimer | character varying |           |          |
+ license_url        | character varying |           |          |
+ data_type          | character varying |           |          |
+Indexes:
+    "audio_en_db_pkey" PRIMARY KEY, btree (id)
+
+postgres-# \d videos_en_db
+                                       Table "public.videos_en_db"
+       Column       |       Type        | Collation | Nullable |                 Default
+--------------------+-------------------+-----------+----------+------------------------------------------
+ id                 | integer           |           | not null | nextval('videos_en_db_id_seq'::regclass)
+ title              | character varying |           |          |
+ language           | character varying |           |          |
+ description        | character varying |           |          |
+ item               | character varying |           |          |
+ website            | character varying |           |          |
+ authors            | character varying |           |          |
+ creation_date      | integer           |           |          |
+ retrieved_date     | date              |           |          |
+ provider_name      | character varying |           |          |
+ provider_id        | character varying |           |          |
+ provider_domain    | character varying |           |          |
+ content_ids        | character varying |           |          |
+ license_name       | character varying |           |          |
+ license_disclaimer | character varying |           |          |
+ license_url        | character varying |           |          |
+ data_type          | character varying |           |          |
+Indexes:
+    "videos_en_db_pkey" PRIMARY KEY, btree (id)
+Triggers:
+    videos_en_db_notify AFTER INSERT OR DELETE OR UPDATE ON videos_en_db FOR EACH ROW EXECUTE FUNCTION table_notify()
+    videos_en_db_truncate AFTER TRUNCATE ON videos_en_db FOR EACH STATEMENT EXECUTE FUNCTION table_notify()
+
+postgres-# \d teachers_futures_db
+                                    Table "public.teachers_futures_db"
+    Column    |       Type        | Collation | Nullable |                     Default
+--------------+-------------------+-----------+----------+-------------------------------------------------
+ id           | integer           |           | not null | nextval('teachers_futures_db_id_seq'::regclass)
+ course       | character varying |           |          |
+ author       | character varying |           |          |
+ activity     | character varying |           |          |
+ week         | character varying |           |          |
+ title        | character varying |           |          |
+ description  | character varying |           |          |
+ keywords     | character varying |           |          |
+ document     | character varying |           |          |
+ date_created | character varying |           |          |
+Indexes:
+    "teachers_futures_db_pkey" PRIMARY KEY, btree (id)
+Triggers:
+    teachers_futures_db_notify AFTER INSERT OR DELETE OR UPDATE ON teachers_futures_db FOR EACH ROW EXECUTE FUNCTION table_notify()
+    teachers_futures_db_truncate AFTER TRUNCATE ON teachers_futures_db FOR EACH STATEMENT EXECUTE FUNCTION table_notify()
+
+postgres-# \d teachers_futures_video_db
+                                    Table "public.teachers_futures_video_db"
+    Column    |       Type        | Collation | Nullable |                        Default
+--------------+-------------------+-----------+----------+-------------------------------------------------------
+ id           | integer           |           | not null | nextval('teachers_futures_video_db_id_seq'::regclass)
+ course       | character varying |           |          |
+ author       | character varying |           |          |
+ activity     | character varying |           |          |
+ week         | character varying |           |          |
+ title        | character varying |           |          |
+ description  | character varying |           |          |
+ keywords     | character varying |           |          |
+ document     | character varying |           |          |
+ date_created | character varying |           |          |
+Indexes:
+    "teachers_futures_video_db_pkey" PRIMARY KEY, btree (id)
+Triggers:
+    teachers_futures_video_db_notify AFTER INSERT OR DELETE OR UPDATE ON teachers_futures_video_db FOR EACH ROW EXECUTE FUNCTION table_notify()
+    teachers_futures_video_db_truncate AFTER TRUNCATE ON teachers_futures_video_db FOR EACH STATEMENT EXECUTE FUNCTION table_notify()
+
+postgres-# \d teachers_futures_audio_db
+                                    Table "public.teachers_futures_audio_db"
+    Column    |       Type        | Collation | Nullable |                        Default
+--------------+-------------------+-----------+----------+-------------------------------------------------------
+ id           | integer           |           | not null | nextval('teachers_futures_audio_db_id_seq'::regclass)
+ course       | character varying |           |          |
+ author       | character varying |           |          |
+ activity     | character varying |           |          |
+ week         | character varying |           |          |
+ title        | character varying |           |          |
+ description  | character varying |           |          |
+ keywords     | character varying |           |          |
+ document     | character varying |           |          |
+ date_created | character varying |           |          |
+Indexes:
+    "teachers_futures_audio_db_pkey" PRIMARY KEY, btree (id)
+Triggers:
+    teachers_futures_audio_db_notify AFTER INSERT OR DELETE OR UPDATE ON teachers_futures_audio_db FOR EACH ROW EXECUTE FUNCTION table_notify()
+    teachers_futures_audio_db_truncate AFTER TRUNCATE ON teachers_futures_audio_db FOR EACH STATEMENT EXECUTE FUNCTION table_notify()
+
+postgres-#
+postgres-# \q
+postgres@smoke_dia_recorder:~$ psql  -U postgres -h 127.0.0.1 --password scholar;
+Password:
+psql (14.1 (Ubuntu 14.1-1.pgdg18.04+1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+scholar=# \dt
+                 List of relations
+ Schema |         Name          | Type  |  Owner
+--------+-----------------------+-------+----------
+ public | advanced_papers_en_db | table | postgres
+ public | papers_en_db          | table | postgres
+(2 rows)
+
+scholar=# \dt advanced_papers_en_db
+                 List of relations
+ Schema |         Name          | Type  |  Owner
+--------+-----------------------+-------+----------
+ public | advanced_papers_en_db | table | postgres
+(1 row)
+
+scholar=# \d advanced_papers_en_db
+                                     Table "public.advanced_papers_en_db"
+    Column     |       Type        | Collation | Nullable |                      Default
+---------------+-------------------+-----------+----------+---------------------------------------------------
+ id            | integer           |           | not null | nextval('advanced_papers_en_db_id_seq'::regclass)
+ title         | character varying |           |          |
+ paperabstract | character varying |           |          |
+ authors       | character varying |           |          |
+ year          | integer           |           |          |
+ s2url         | character varying |           |          |
+ pdfurls       | character varying |           |          |
+ journalname   | character varying |           |          |
+ doiurl        | character varying |           |          |
+ fieldsofstudy | character varying |           |          |
+Indexes:
+    "advanced_papers_en_db_pkey" PRIMARY KEY, btree (id)
+Triggers:
+    advanced_papers_en_db_notify AFTER INSERT OR DELETE OR UPDATE ON advanced_papers_en_db FOR EACH ROW EXECUTE FUNCTION table_notify()
+    advanced_papers_en_db_truncate AFTER TRUNCATE ON advanced_papers_en_db FOR EACH STATEMENT EXECUTE FUNCTION table_notify()
+
+scholar=# \d papers_en_db
+                                     Table "public.papers_en_db"
+    Column     |       Type        | Collation | Nullable |                 Default
+---------------+-------------------+-----------+----------+------------------------------------------
+ id            | integer           |           | not null | nextval('papers_en_db_id_seq'::regclass)
+ title         | character varying |           |          |
+ paperabstract | character varying |           |          |
+ authors       | character varying |           |          |
+ year          | integer           |           |          |
+ s2url         | character varying |           |          |
+ pdfurls       | character varying |           |          |
+ journalname   | character varying |           |          |
+ doiurl        | character varying |           |          |
+ fieldsofstudy | character varying |           |          |
+Indexes:
+    "papers_en_db_pkey" PRIMARY KEY, btree (id)
+
+scholar=#
