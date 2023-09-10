@@ -44,5 +44,3 @@ High quality search results based on user query
  grep -Eo 'https://[^ >]+' ADVANCED_PAPERS_EN_DB.txt > ADVANCED_PAPERS_URL.tx
  cat ADVANCED_PAPERS_HTTPS.txt | awk -F/ '{print $3}' > DOMAIN_HTTPS.TXT
 ```
-# oer
-# oer
